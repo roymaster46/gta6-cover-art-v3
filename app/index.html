@@ -3,20 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Vice Cover Studio v3 — Sundown</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
   <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+    <h1>Vice Cover Studio <span class="v3">v3 · Sundown</span></h1>
+    <p class="lede">Turn your crew's photos into a GTA-style movie poster — seven slanted strips under a painted sunset — and export it as a PNG.</p>
+
+    <fieldset>
+      <legend>1 · Words</legend>
+      <label>Title <input id="title" type="text" maxlength="24" value="SUNDOWN"></label>
+      <label>Script subtitle <input id="subtitle" type="text" maxlength="40" value="Kings of the Coast"></label>
+      <label>Tagline <input id="tagline" type="text" maxlength="60" value="SEVEN LIVES · ONE SUNSET · NO WAY BACK"></label>
+      <label>Press quote <input id="quote" type="text" maxlength="60" value="A FEVER DREAM IN NEON"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout</legend>
+      <div id="layouts" class="chips"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Grade</legend>
+      <div id="grades" class="chips"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Finish</legend>
+      <label>Grain <input id="fx-grain" type="range" min="0" max="100" value="60"></label>
+      <label>Vignette <input id="fx-vignette" type="range" min="0" max="100" value="60"></label>
+      <label>Light leak <input id="fx-leak" type="range" min="0" max="100" value="50"></label>
+      <label>Strip slant <input id="fx-slant" type="range" min="0" max="150" value="100"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Strips</legend>
+      <div id="panel-list"></div>
+      <p class="selected-line">Editing <strong id="selected-role">THE DRIVER</strong></p>
+      <label>Photo for this strip <input id="panel-photo" type="file" accept="image/*"></label>
+      <label>One photo for all strips <input id="fill-all" type="file" accept="image/*"></label>
+      <div class="row">
+        <button id="sample-crew" type="button">Load sample crew</button>
+        <button id="load-scene" type="button">Load sunset scene</button>
+      </div>
+      <label>Zoom <input id="zoom" type="range" min="0.9" max="2" step="0.01" value="1"></label>
+      <label>Pan left–right <input id="pan-x" type="range" min="-0.3" max="0.3" step="0.01" value="0"></label>
+      <label>Pan up–down <input id="pan-y" type="range" min="-0.3" max="0.3" step="0.01" value="0"></label>
+      <div class="row">
+        <button id="flip" type="button">Flip</button>
+        <button id="reset-crop" type="button">Reset crop</button>
+      </div>
+      <p class="note">Face-aware crop keeps each face centred in its strip and clear of the title band. Your own photos are cover-fit; the face box is only recorded for the samples.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>6 · Export</legend>
+      <div id="sizes" class="chips"></div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+      <p id="face-check" class="face-ok" role="status"></p>
+      <p class="note">Everything runs offline in your browser — no photo ever leaves your device. All characters are original; no Rockstar Games logo, artwork or font is used.</p>
+    </fieldset>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <canvas id="poster" width="1920" height="1080" aria-label="The cover poster"></canvas>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>

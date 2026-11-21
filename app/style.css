@@ -1,12 +1,59 @@
-html, body { margin: 0; height: 100%; background: #f2f0f4; color: #1d1b22; font: 15px/1.4 system-ui, sans-serif; }
-.app { display: flex; gap: 32px; align-items: center; justify-content: center; height: 100%; padding: 24px; box-sizing: border-box; }
-.controls { display: flex; flex-direction: column; gap: 14px; width: 280px; }
-.controls h1 { margin: 0; font-size: 28px; }
-.controls p { margin: 0; color: #5c5866; }
-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
-input[type=text] { font: inherit; padding: 8px; border: 1px solid #c9c4d1; border-radius: 6px; }
-button { font: inherit; font-weight: 700; padding: 10px; border: 0; border-radius: 6px; background: #1d1b22; color: #fff; cursor: pointer; }
-canvas { width: min(70vh, 60vw); height: min(70vh, 60vw); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Yellowtail';
+  src: url('./fonts/Yellowtail-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { margin: 0; min-height: 100%; background: #160a20; color: #f5e6c8; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 16px; width: 320px; flex: none; }
+.controls h1 { margin: 0; font-size: 26px; line-height: 1.15; color: #fff; }
+.controls h1 .v3 { color: #ffc93c; font-size: 18px; }
+.lede { margin: 0; color: #c9a86a; }
+fieldset { border: 1px solid #4a2a5e; border-radius: 10px; padding: 12px 14px 14px; margin: 0; }
+legend { font-weight: 700; color: #ffc93c; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; margin-top: 10px; }
+label:first-child { margin-top: 0; }
+input[type=text] { font: inherit; padding: 8px; border: 1px solid #6b4a7d; border-radius: 6px; background: #241233; color: #fff; }
+input[type=range] { accent-color: #ff2e88; }
+input[type=file] { font: inherit; color: #c9a86a; }
+button { font: inherit; font-weight: 700; padding: 9px 12px; border: 0; border-radius: 6px; background: #3a1c4d; color: #fff; cursor: pointer; }
+button:hover { background: #4a2a5e; }
+button.primary { background: #ff2e88; width: 100%; margin-top: 10px; }
+button.primary:hover { background: #ff4d9d; }
+button.active { background: #ffc93c; color: #160a20; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 7px 10px; }
+#panel-list { display: flex; flex-direction: column; gap: 6px; }
+.panel-row { display: flex; gap: 10px; align-items: center; text-align: left; background: #241233; }
+.panel-row.selected { background: #ffc93c; color: #160a20; }
+.panel-row.empty { opacity: 0.55; }
+.panel-num { font-weight: 800; color: #ff2e88; }
+.panel-row.selected .panel-num { color: #160a20; }
+.panel-place { margin-left: auto; font-weight: 400; color: #c9a86a; font-size: 13px; }
+.panel-row.selected .panel-place { color: #160a20; }
+.selected-line { margin: 10px 0 0; }
+.row { display: flex; gap: 8px; margin-top: 10px; }
+.row button { flex: 1; }
+.note { margin: 10px 0 0; color: #b9a684; font-size: 13px; font-weight: 400; }
+#status, #face-check { margin: 10px 0 0; min-height: 1.2em; }
+.face-ok { color: #7ddf8e; }
+.face-bad { color: #ff6b6b; }
+canvas#poster { width: min(72vw, calc((100vh - 48px) * 16 / 9)); height: auto; flex: none; box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; }
 body.shot-cover .controls { display: none; }
 body.shot-cover .app { padding: 0; }
-body.shot-cover canvas { width: 100vw; height: 100vh; box-shadow: none; }
+body.shot-cover canvas#poster { width: 100vw; height: 100vh; object-fit: contain; box-shadow: none; border-radius: 0; background: #160a20; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; align-items: stretch; }
+  .controls { width: auto; }
+  canvas#poster { width: 100%; }
+}

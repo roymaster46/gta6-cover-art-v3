@@ -1,3 +1,4 @@
+// Vice Cover Studio v3 — vendored make.fun library, unchanged apart from this note.
 // make.fun's browser app library for Node 22 (gta6-cover-art-01's: sdk/game/makefun-game.ts with
 // game/ read as app/): one file, the Node standard library only, erasable
 // TypeScript, so it runs as-is under `node main.ts` with no flags, no build and no install. Copy it to
